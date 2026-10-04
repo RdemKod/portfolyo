@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolyo | Dijital Tasarım & Web Geliştirme Hizmetleri</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            font-weight: 600;
+            color: #94a3b8;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 650px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #38bdf8;
+            color: #0f172a;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #0284c7;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #f1f5f9;
+        }
+
+        /* Services Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-5px);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: #38bdf8;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* Portfolio Items */
+        .portfolio-item {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            background: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #38bdf8;
+            font-size: 3rem;
+        }
+
+        .portfolio-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .portfolio-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .portfolio-content p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .link-btn {
+            color: #38bdf8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            padding: 0;
+            transition: 0.3s;
+        }
+
+        .link-btn:hover {
+            color: #818cf8;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #334155;
+        }
+
+        .contact-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #f8fafc;
+        }
+
+        .contact-info p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .social-btn.discord {
+            background: #5865F2;
+        }
+
+        .social-btn.telegram {
+            background: #229ED9;
+        }
+
+        .social-btn:hover {
+            transform: translateX(5px);
+            opacity: 0.9;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #f8fafc;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #38bdf8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #334155;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* ===== LIGHTBOX MODAL / GALERİ STİLLERİ ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-container {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .slide-content {
+            text-align: center;
+            width: 100%;
+        }
+
+        .slide-content img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            object-fit: contain;
+        }
+
+        .slide-caption {
+            color: #f8fafc;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            color: #94a3b8;
+            font-size: 32px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .close-btn:hover {
+            color: #38bdf8;
+        }
+
+        .nav-arrow {
+            background: rgba(30, 41, 59, 0.8);
+            color: #38bdf8;
+            border: 1px solid #334155;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .nav-arrow:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        .gallery-action-btn {
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .modal-container {
+                width: 95%;
+            }
+
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">&lt;DevDesign /&gt;</div>
+            <div class="nav-links">
+                <a href="#hizmetler">Hizmetler</a>
+                <a href="#portfolyo">Çalışmalarım</a>
+                <a href="#iletisim">İletişim</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Web & Dijital Tasarım Çözümleri</h1>
+            <p>Modern ön yüz geliştirme ve dikkat çekici grafik tasarımlarıyla projelerinize değer katıyorum. Hızlı
+                teslimat ve dinamik çözümler.</p>
+            <a href="#portfolyo" class="btn">Çalışmalarımı İnceleyin</a>
+        </header>
+
+        <!-- Hizmetler Section -->
+        <section id="hizmetler">
+            <h2 class="section-title">Neler Yapıyorum?</h2>
+            <div class="grid">
+                <div class="card">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Frontend Geliştirme</h3>
+                    <p>HTML5, CSS3 ve JavaScript ile dinamik, mobil uyumlu ve modern web arayüzleri tasarımı.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <h3>Unity Oyun Geliştirme</h3>
+                    <p>Oyununuz için lazım olan mekanik kod yapısını düzenli bir şekilde halledip sizlere teslim eder.
+                    </p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-image"></i>
+                    <h3>Sosyal Medya & Grafik</h3>
+                    <p>Photoshop ile YouTube thumbnail (kapak görseli), banner ve kurumsal logo tasarımları.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolyo Section -->
+        <section id="portfolyo">
+            <h2 class="section-title">Öne Çıkan Çalışmalarım</h2>
+            <div class="grid">
+
+                <!-- Çalışma 1: Web Projeleri Galeri Kartı -->
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <div>
+                            <h3>Web Projeleri & Arayüzler</h3>
+                            <p>Canlı sürpriz web sitesi, kişisel portfolyo ve dinamik web uygulamaları galerisi.</p>
+                        </div>
+                        <button class="btn" onclick="openGallery('web')" style="width: 100%; margin-top: 10px;">
+                            Projeleri İncele <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Çalışma 2: Tasarım Projeleri Galeri Kartı -->
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <i class="fa-solid fa-paintbrush"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <div>
+                            <h3>YouTube Thumbnail & Banner</h3>
+                            <p>Yüksek kontrastlı, dikkat çekici oyun ve içerik üretici kapak görselleri ile tasarımlar.</p>
+                        </div>
+                        <button class="btn" onclick="openGallery('design')" style="width: 100%; margin-top: 10px;">
+                            Tasarımları İncele <i class="fa-solid fa-image"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- İletişim Section -->
+        <section id="iletisim">
+            <h2 class="section-title">Benimle İletişime Geçin</h2>
+            <p style="text-align: center; color: #94a3b8; margin-bottom: 40px;">Projeniz için teklif almak, özel
+                tasarım/yazılım taleplerinizi iletmek veya doğrudan görüşmek için aşağıdaki kanalları kullanabilirsiniz.
+            </p>
+
+            <div class="contact-wrapper">
+                <!-- Sol Taraf: Hızlı İletişim Butonları -->
+                <div class="contact-info">
+                    <h3>Hızlı İletişim Kanalları</h3>
+                    <p>En hızlı dönüşü Discord ve Instagram DM üzerinden sağlıyorum.</p>
+
+                    <div class="social-links">
+                        <a href="https://instagram.com/aedevx" target="_blank" class="social-btn instagram">
+                            <i class="fa-brands fa-instagram"></i> Instagram DM
+                        </a>
+                        <a href="https://discord.com/users/1288142159639482401" target="_blank"
+                            class="social-btn discord">
+                            <i class="fa-brands fa-discord"></i> Discord Mesaj
+                        </a>
+                        <a href="https://t.me/AExDEV" target="_blank" class="social-btn telegram">
+                            <i class="fa-brands fa-telegram"></i> Telegram Mesaj
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sağ Taraf: Hızlı Mesaj Formu -->
+                <form class="contact-form" action="https://formspree.io/f/mgavgbyk" method="POST">
+                    <input type="text" name="name" placeholder="Adınız / Marka Adınız" required>
+                    <input type="email" name="email" placeholder="E-Posta Adresiniz veya Telefon" required>
+                    <textarea name="message" rows="4" placeholder="Projenizden veya ihtiyacınızdan kısaca bahsedin..."
+                        required></textarea>
+                    <button type="submit" class="btn" style="width: 100%;">Teklif Al / Mesaj Gönder</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Tüm Hakları Saklıdır. Dijital Tasarım & Yazılım Hizmetleri.</p>
+        </footer>
+    </div>
+
+    <!-- ===== LIGHTBOX MODAL / GALERİ YAPISI ===== -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-container">
+            <span class="close-btn" onclick="closeGallery()">&times;</span>
+
+            <!-- Sol Ok -->
+            <button class="nav-arrow" onclick="changeSlide(-1)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <!-- Görsel ve Açıklama Alanı -->
+            <div class="slide-content">
+                <img id="modalImg" src="" alt="Portfolyo Çalışması">
+                <div id="modalCaption" class="slide-caption"></div>
+                <div id="modalLinkContainer" style="margin-top: 15px;"></div>
+            </div>
+
+            <!-- Sağ Ok -->
+            <button class="nav-arrow" onclick="changeSlide(1)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Galeri Mantığı -->
+    <script>
+        // Galeri İçerikleri Veritabanı
+        const galleryData = {
+            design: [
+                {
+                    src: "images/yeni_takimlar.png",
+                    title: "EA FC 27 - Kulüp Oluşturma Fikirleri Thumbnail Tasarımı"
+                },
+                {
+                    src: "images/valorant_thumbnail.png",
+                    title: "Valorant Oyun İçi Thumbnail Tasarımı"
+                }
+            ],
+            web: [
+                {
+                    src: "images/surpriz-web.png",
+                    title: "Kişiye Özel Sürpriz Web Sitesi (Canlı Sayaç & Müzik)",
+                    link: "https://surpiz-web.vercel.app/"
+                },
+                {
+                    src: "images/bio.png",
+                    title: "Portfolyo & Kişisel Bio Web Sitesi Tasarımı",
+                    link: "https://aexdev.vercel.app/"
+                }
+            ]
+        };
+
+        let currentCategory = 'design';
+        let currentIndex = 0;
+
+        function openGallery(category) {
+            currentCategory = category;
+            currentIndex = 0;
+            document.getElementById('galleryModal').style.display = 'flex';
+            updateModalContent();
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').style.display = 'none';
+        }
+
+        function changeSlide(direction) {
+            const list = galleryData[currentCategory];
+            currentIndex = (currentIndex + direction + list.length) % list.length;
+            updateModalContent();
+        }
+
+        function updateModalContent() {
+            const item = galleryData[currentCategory][currentIndex];
+            const imgEl = document.getElementById('modalImg');
+            const captionEl = document.getElementById('modalCaption');
+            const linkContainer = document.getElementById('modalLinkContainer');
+
+            imgEl.src = item.src;
+            captionEl.innerText = item.title;
+
+            // Eğer projenin canlı web adresi varsa buton çıkarır
+            if (item.link) {
+                linkContainer.innerHTML = `<a href="${item.link}" target="_blank" class="btn gallery-action-btn">Canlı Projeye Git <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+            } else {
+                linkContainer.innerHTML = '';
+            }
+        }
+
+        // Klavye Tuş Kontrolleri (Sağ, Sol, ESC)
+        document.addEventListener('keydown', function (e) {
+            const modal = document.getElementById('galleryModal');
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') changeSlide(1);
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+                if (e.key === 'Escape') closeGallery();
+            }
+        });
+
+        // Modal dışındaki boşluğa tıklayınca kapatma
+        document.getElementById('galleryModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeGallery();
+            }
+        });
+    </script>
+</body>
+
+</html>
