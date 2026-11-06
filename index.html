@@ -10,16 +10,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* CSS DEĞİŞKENLERİ (Tema Renkleri) */
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --primary: #38bdf8;
+            --primary-hover: #0284c7;
+            --switch-bg: #1e293b;
+        }
+
+        /* Aydınlık Mod Değişkenleri */
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --text-color: #0f172a;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --border-color: #cbd5e1;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --switch-bg: #e2e8f0;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
 
@@ -45,18 +70,64 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
-            color: #38bdf8;
+            color: var(--primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .nav-links a {
             margin-left: 20px;
             font-weight: 600;
-            color: #94a3b8;
+            color: var(--text-muted);
             transition: 0.3s;
         }
 
         .nav-links a:hover {
-            color: #38bdf8;
+            color: var(--primary);
+        }
+
+        /* Araçlar (Dil ve Tema Butonları Grubu) */
+        .controls-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Dil Değiştirici ve Tema Butonu */
+        .lang-switch, .theme-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--switch-bg);
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lang-btn, .theme-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 6px 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .theme-btn {
+            padding: 6px 12px;
+            font-size: 1rem;
+        }
+
+        .lang-btn.active, .lang-btn:hover, .theme-btn:hover {
+            background: var(--primary);
+            color: var(--bg-color);
         }
 
         /* Hero Section */
@@ -69,7 +140,7 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 20px;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
+            background: linear-gradient(to right, var(--primary), #818cf8);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -78,15 +149,15 @@
 
         .hero p {
             font-size: 1.25rem;
-            color: #94a3b8;
+            color: var(--text-muted);
             max-width: 650px;
             margin: 0 auto 30px;
         }
 
         .btn {
             display: inline-block;
-            background: #38bdf8;
-            color: #0f172a;
+            background: var(--primary);
+            color: #fff;
             padding: 12px 28px;
             border-radius: 8px;
             font-weight: 600;
@@ -96,8 +167,7 @@
         }
 
         .btn:hover {
-            background: #0284c7;
-            color: #fff;
+            background: var(--primary-hover);
             transform: translateY(-2px);
         }
 
@@ -110,7 +180,7 @@
             text-align: center;
             font-size: 2rem;
             margin-bottom: 40px;
-            color: #f1f5f9;
+            color: var(--text-color);
         }
 
         /* Services Grid */
@@ -121,21 +191,21 @@
         }
 
         .card {
-            background: #1e293b;
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 12px;
-            border: 1px solid #334155;
+            border: 1px solid var(--border-color);
             transition: 0.3s;
         }
 
         .card:hover {
-            border-color: #38bdf8;
+            border-color: var(--primary);
             transform: translateY(-5px);
         }
 
         .card i {
             font-size: 2.5rem;
-            color: #38bdf8;
+            color: var(--primary);
             margin-bottom: 15px;
         }
 
@@ -145,16 +215,16 @@
         }
 
         .card p {
-            color: #94a3b8;
+            color: var(--text-muted);
             font-size: 0.95rem;
         }
 
         /* Portfolio Items */
         .portfolio-item {
-            background: #1e293b;
+            background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #334155;
+            border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -163,11 +233,11 @@
         .portfolio-img {
             width: 100%;
             height: 200px;
-            background: #334155;
+            background: var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #38bdf8;
+            color: var(--primary);
             font-size: 3rem;
         }
 
@@ -184,47 +254,29 @@
         }
 
         .portfolio-content p {
-            color: #94a3b8;
+            color: var(--text-muted);
             font-size: 0.9rem;
             margin-bottom: 15px;
-        }
-
-        .link-btn {
-            color: #38bdf8;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: none;
-            border: none;
-            padding: 0;
-            transition: 0.3s;
-        }
-
-        .link-btn:hover {
-            color: #818cf8;
         }
 
         .contact-wrapper {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            background: #1e293b;
+            background: var(--card-bg);
             padding: 40px;
             border-radius: 16px;
-            border: 1px solid #334155;
+            border: 1px solid var(--border-color);
         }
 
         .contact-info h3 {
             font-size: 1.4rem;
             margin-bottom: 10px;
-            color: #f8fafc;
+            color: var(--text-color);
         }
 
         .contact-info p {
-            color: #94a3b8;
+            color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 25px;
         }
@@ -273,10 +325,10 @@
         .contact-form textarea {
             width: 100%;
             padding: 12px 16px;
-            background: #0f172a;
-            border: 1px solid #334155;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            color: #f8fafc;
+            color: var(--text-color);
             font-size: 0.95rem;
             outline: none;
             transition: 0.3s;
@@ -284,15 +336,15 @@
 
         .contact-form input:focus,
         .contact-form textarea:focus {
-            border-color: #38bdf8;
+            border-color: var(--primary);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 40px 0;
-            border-top: 1px solid #334155;
-            color: #64748b;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
@@ -305,7 +357,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(15, 23, 42, 0.95);
+            background-color: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
@@ -329,13 +381,13 @@
             max-width: 100%;
             max-height: 70vh;
             border-radius: 12px;
-            border: 1px solid #334155;
+            border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
             object-fit: contain;
         }
 
         .slide-caption {
-            color: #f8fafc;
+            color: var(--text-color);
             margin-top: 15px;
             font-size: 1.1rem;
             font-weight: 600;
@@ -345,20 +397,20 @@
             position: absolute;
             top: -45px;
             right: 0;
-            color: #94a3b8;
+            color: var(--text-muted);
             font-size: 32px;
             cursor: pointer;
             transition: 0.2s;
         }
 
         .close-btn:hover {
-            color: #38bdf8;
+            color: var(--primary);
         }
 
         .nav-arrow {
-            background: rgba(30, 41, 59, 0.8);
-            color: #38bdf8;
-            border: 1px solid #334155;
+            background: var(--card-bg);
+            color: var(--primary);
+            border: 1px solid var(--border-color);
             font-size: 24px;
             width: 50px;
             height: 50px;
@@ -373,8 +425,8 @@
         }
 
         .nav-arrow:hover {
-            background: #38bdf8;
-            color: #0f172a;
+            background: var(--primary);
+            color: var(--bg-color);
         }
 
         .gallery-action-btn {
@@ -410,47 +462,60 @@
         <!-- Navigation -->
         <nav>
             <div class="logo">&lt;DevDesign /&gt;</div>
-            <div class="nav-links">
-                <a href="#hizmetler">Hizmetler</a>
-                <a href="#portfolyo">Çalışmalarım</a>
-                <a href="#iletisim">İletişim</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#hizmetler" data-i18n="navServices">Hizmetler</a>
+                    <a href="#portfolyo" data-i18n="navPortfolio">Çalışmalarım</a>
+                    <a href="#iletisim" data-i18n="navContact">İletişim</a>
+                </div>
+                
+                <div class="controls-group">
+                    <!-- Tema Değiştirici Buton (Güneş / Ay) -->
+                    <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()" title="Tema Değiştir">
+                        <i id="themeIcon" class="fa-solid fa-moon"></i>
+                    </button>
+
+                    <!-- Dil Değiştirici Butonlar -->
+                    <div class="lang-switch">
+                        <button id="btn-tr" class="lang-btn active" onclick="changeLanguage('tr')">TR</button>
+                        <button id="btn-en" class="lang-btn" onclick="changeLanguage('en')">EN</button>
+                    </div>
+                </div>
             </div>
         </nav>
 
         <!-- Hero Section -->
         <header class="hero">
-            <h1>Web & Dijital Tasarım Çözümleri</h1>
-            <p>Modern ön yüz geliştirme ve dikkat çekici grafik tasarımlarıyla projelerinize değer katıyorum. Hızlı
-                teslimat ve dinamik çözümler.</p>
-            <a href="#portfolyo" class="btn">Çalışmalarımı İnceleyin</a>
+            <h1 data-i18n="heroTitle">Web & Dijital Tasarım Çözümleri</h1>
+            <p data-i18n="heroSub">Modern ön yüz geliştirme ve dikkat çekici grafik tasarımlarıyla projelerinize değer katıyorum. Hızlı teslimat ve dinamik çözümler.</p>
+            <a href="#portfolyo" class="btn" data-i18n="heroBtn">Çalışmalarımı İnceleyin</a>
         </header>
 
         <!-- Hizmetler Section -->
         <section id="hizmetler">
-            <h2 class="section-title">Neler Yapıyorum?</h2>
+            <h2 class="section-title" data-i18n="servicesTitle">Neler Yapıyorum?</h2>
             <div class="grid">
                 <div class="card">
                     <i class="fa-solid fa-code"></i>
-                    <h3>Frontend Geliştirme</h3>
-                    <p>HTML5, CSS3 ve JavaScript ile dinamik, mobil uyumlu ve modern web arayüzleri tasarımı.</p>
+                    <h3 data-i18n="service1Title">Frontend Geliştirme</h3>
+                    <p data-i18n="service1Desc">HTML5, CSS3 ve JavaScript ile dinamik, mobil uyumlu ve modern web arayüzleri tasarımı.</p>
                 </div>
                 <div class="card">
                     <i class="fa-solid fa-gamepad"></i>
-                    <h3>Unity Oyun Geliştirme</h3>
-                    <p>Oyununuz için lazım olan mekanik kod yapısını düzenli bir şekilde halledip sizlere teslim eder.
-                    </p>
+                    <h3 data-i18n="service2Title">Unity Oyun Geliştirme</h3>
+                    <p data-i18n="service2Desc">Oyununuz için lazım olan mekanik kod yapısını düzenli bir şekilde halledip sizlere teslim eder.</p>
                 </div>
                 <div class="card">
                     <i class="fa-solid fa-image"></i>
-                    <h3>Sosyal Medya & Grafik</h3>
-                    <p>Photoshop ile YouTube thumbnail (kapak görseli), banner ve kurumsal logo tasarımları.</p>
+                    <h3 data-i18n="service3Title">Sosyal Medya & Grafik</h3>
+                    <p data-i18n="service3Desc">Photoshop ile YouTube thumbnail (kapak görseli), banner ve kurumsal logo tasarımları.</p>
                 </div>
             </div>
         </section>
 
         <!-- Portfolyo Section -->
         <section id="portfolyo">
-            <h2 class="section-title">Öne Çıkan Çalışmalarım</h2>
+            <h2 class="section-title" data-i18n="portfolioTitle">Öne Çıkan Çalışmalarım</h2>
             <div class="grid">
 
                 <!-- Çalışma 1: Web Projeleri Galeri Kartı -->
@@ -460,11 +525,11 @@
                     </div>
                     <div class="portfolio-content">
                         <div>
-                            <h3>Web Projeleri & Arayüzler</h3>
-                            <p>Canlı sürpriz web sitesi, kişisel portfolyo ve dinamik web uygulamaları galerisi.</p>
+                            <h3 data-i18n="webCardTitle">Web Projeleri & Arayüzler</h3>
+                            <p data-i18n="webCardDesc">Canlı sürpriz web sitesi, kişisel portfolyo ve dinamik web uygulamaları galerisi.</p>
                         </div>
                         <button class="btn" onclick="openGallery('web')" style="width: 100%; margin-top: 10px;">
-                            Projeleri İncele <i class="fa-solid fa-arrow-right"></i>
+                            <span data-i18n="webCardBtn">Projeleri İncele</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -476,11 +541,11 @@
                     </div>
                     <div class="portfolio-content">
                         <div>
-                            <h3>YouTube Thumbnail & Banner</h3>
-                            <p>Yüksek kontrastlı, dikkat çekici oyun ve içerik üretici kapak görselleri ile tasarımlar.</p>
+                            <h3 data-i18n="designCardTitle">YouTube Thumbnail & Banner</h3>
+                            <p data-i18n="designCardDesc">Yüksek kontrastlı, dikkat çekici oyun ve içerik üretici kapak görselleri ile tasarımlar.</p>
                         </div>
                         <button class="btn" onclick="openGallery('design')" style="width: 100%; margin-top: 10px;">
-                            Tasarımları İncele <i class="fa-solid fa-image"></i>
+                            <span data-i18n="designCardBtn">Tasarımları İncele</span> <i class="fa-solid fa-image"></i>
                         </button>
                     </div>
                 </div>
@@ -490,16 +555,16 @@
 
         <!-- İletişim Section -->
         <section id="iletisim">
-            <h2 class="section-title">Benimle İletişime Geçin</h2>
-            <p style="text-align: center; color: #94a3b8; margin-bottom: 40px;">Projeniz için teklif almak, özel
-                tasarım/yazılım taleplerinizi iletmek veya doğrudan görüşmek için aşağıdaki kanalları kullanabilirsiniz.
+            <h2 class="section-title" data-i18n="contactTitle">Benimle İletişime Geçin</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;" data-i18n="contactSub">
+                Projeniz için teklif almak, özel tasarım/yazılım taleplerinizi iletmek veya doğrudan görüşmek için aşağıdaki kanalları kullanabilirsiniz.
             </p>
 
             <div class="contact-wrapper">
                 <!-- Sol Taraf: Hızlı İletişim Butonları -->
                 <div class="contact-info">
-                    <h3>Hızlı İletişim Kanalları</h3>
-                    <p>En hızlı dönüşü Discord ve Instagram DM üzerinden sağlıyorum.</p>
+                    <h3 data-i18n="quickContactTitle">Hızlı İletişim Kanalları</h3>
+                    <p data-i18n="quickContactDesc">En hızlı dönüşü Discord ve Instagram DM üzerinden sağlıyorum.</p>
 
                     <div class="social-links">
                         <a href="https://instagram.com/aedevx" target="_blank" class="social-btn instagram">
@@ -507,28 +572,27 @@
                         </a>
                         <a href="https://discord.com/users/1288142159639482401" target="_blank"
                             class="social-btn discord">
-                            <i class="fa-brands fa-discord"></i> Discord Mesaj
+                            <i class="fa-brands fa-discord"></i> <span data-i18n="discordText">Discord Mesaj</span>
                         </a>
                         <a href="https://t.me/AExDEV" target="_blank" class="social-btn telegram">
-                            <i class="fa-brands fa-telegram"></i> Telegram Mesaj
+                            <i class="fa-brands fa-telegram"></i> <span data-i18n="telegramText">Telegram Mesaj</span>
                         </a>
                     </div>
                 </div>
 
                 <!-- Sağ Taraf: Hızlı Mesaj Formu -->
                 <form class="contact-form" action="https://formspree.io/f/mgavgbyk" method="POST">
-                    <input type="text" name="name" placeholder="Adınız / Marka Adınız" required>
-                    <input type="email" name="email" placeholder="E-Posta Adresiniz veya Telefon" required>
-                    <textarea name="message" rows="4" placeholder="Projenizden veya ihtiyacınızdan kısaca bahsedin..."
-                        required></textarea>
-                    <button type="submit" class="btn" style="width: 100%;">Teklif Al / Mesaj Gönder</button>
+                    <input type="text" name="name" placeholder="Adınız / Marka Adınız" data-i18n-placeholder="namePlaceholder" required>
+                    <input type="email" name="email" placeholder="E-Posta Adresiniz veya Telefon" data-i18n-placeholder="emailPlaceholder" required>
+                    <textarea name="message" rows="4" placeholder="Projenizden veya ihtiyacınızdan kısaca bahsedin..." data-i18n-placeholder="msgPlaceholder" required></textarea>
+                    <button type="submit" class="btn" style="width: 100%;" data-i18n="submitBtn">Teklif Al / Mesaj Gönder</button>
                 </form>
             </div>
         </section>
 
         <!-- Footer -->
         <footer>
-            <p>&copy; 2026 Tüm Hakları Saklıdır. Dijital Tasarım & Yazılım Hizmetleri.</p>
+            <p data-i18n="footerText">&copy; 2026 Tüm Hakları Saklıdır. Dijital Tasarım & Yazılım Hizmetleri.</p>
         </footer>
     </div>
 
@@ -556,8 +620,136 @@
         </div>
     </div>
 
-    <!-- JavaScript Galeri Mantığı -->
+    <!-- JavaScript Galeri, Dil ve Tema Desteği Mantığı -->
     <script>
+        // Çeviri Sözlüğü (TR / EN)
+        const translations = {
+            tr: {
+                navServices: "Hizmetler",
+                navPortfolio: "Çalışmalarım",
+                navContact: "İletişim",
+                heroTitle: "Web & Dijital Tasarım Çözümleri",
+                heroSub: "Modern ön yüz geliştirme ve dikkat çekici grafik tasarımlarıyla projelerinize değer katıyorum. Hızlı teslimat ve dinamik çözümler.",
+                heroBtn: "Çalışmalarımı İnceleyin",
+                servicesTitle: "Neler Yapıyorum?",
+                service1Title: "Frontend Geliştirme",
+                service1Desc: "HTML5, CSS3 ve JavaScript ile dinamik, mobil uyumlu ve modern web arayüzleri tasarımı.",
+                service2Title: "Unity Oyun Geliştirme",
+                service2Desc: "Oyununuz için lazım olan mekanik kod yapısını düzenli bir şekilde halledip sizlere teslim eder.",
+                service3Title: "Sosyal Medya & Grafik",
+                service3Desc: "Photoshop ile YouTube thumbnail (kapak görseli), banner ve kurumsal logo tasarımları.",
+                portfolioTitle: "Öne Çıkan Çalışmalarım",
+                webCardTitle: "Web Projeleri & Arayüzler",
+                webCardDesc: "Canlı sürpriz web sitesi, kişisel portfolyo ve dinamik web uygulamaları galerisi.",
+                webCardBtn: "Projeleri İncele",
+                designCardTitle: "YouTube Thumbnail & Banner",
+                designCardDesc: "Yüksek kontrastlı, dikkat çekici oyun ve içerik üretici kapak görselleri ile tasarımlar.",
+                designCardBtn: "Tasarımları İncele",
+                contactTitle: "Benimle İletişime Geçin",
+                contactSub: "Projeniz için teklif almak, özel tasarım/yazılım taleplerinizi iletmek veya doğrudan görüşmek için aşağıdaki kanalları kullanabilirsiniz.",
+                quickContactTitle: "Hızlı İletişim Kanalları",
+                quickContactDesc: "En hızlı dönüşü Discord ve Instagram DM üzerinden sağlıyorum.",
+                discordText: "Discord Mesaj",
+                telegramText: "Telegram Mesaj",
+                namePlaceholder: "Adınız / Marka Adınız",
+                emailPlaceholder: "E-Posta Adresiniz veya Telefon",
+                msgPlaceholder: "Projenizden veya ihtiyacınızdan kısaca bahsedin...",
+                submitBtn: "Teklif Al / Mesaj Gönder",
+                footerText: "&copy; 2026 Tüm Hakları Saklıdır. Dijital Tasarım & Yazılım Hizmetleri.",
+                liveProjBtn: "Canlı Projeye Git"
+            },
+            en: {
+                navServices: "Services",
+                navPortfolio: "Portfolio",
+                navContact: "Contact",
+                heroTitle: "Web & Digital Design Solutions",
+                heroSub: "Adding value to your projects with modern front-end development and eye-catching graphic designs. Fast delivery and dynamic solutions.",
+                heroBtn: "View My Work",
+                servicesTitle: "What I Do?",
+                service1Title: "Frontend Development",
+                service1Desc: "Designing dynamic, mobile-friendly, and modern web interfaces using HTML5, CSS3, and JavaScript.",
+                service2Title: "Unity Game Development",
+                service2Desc: "Delivering clean and well-structured mechanic code systems tailored for your game.",
+                service3Title: "Social Media & Graphics",
+                service3Desc: "Creating YouTube thumbnails, banners, and corporate logos using Photoshop.",
+                portfolioTitle: "Featured Works",
+                webCardTitle: "Web Projects & Interfaces",
+                webCardDesc: "Live surprise website, personal portfolio, and dynamic web application gallery.",
+                webCardBtn: "Explore Projects",
+                designCardTitle: "YouTube Thumbnail & Banner",
+                designCardDesc: "High-contrast, eye-catching gaming and content creator cover graphics and designs.",
+                designCardBtn: "Explore Designs",
+                contactTitle: "Get In Touch",
+                contactSub: "You can use the channels below to get a quote for your project, submit custom design/software requests, or discuss directly.",
+                quickContactTitle: "Quick Contact Channels",
+                quickContactDesc: "I provide the fastest response via Discord and Instagram DM.",
+                discordText: "Discord Message",
+                telegramText: "Telegram Message",
+                namePlaceholder: "Your Name / Brand Name",
+                emailPlaceholder: "Your Email Address or Phone",
+                msgPlaceholder: "Briefly mention your project or needs...",
+                submitBtn: "Get a Quote / Send Message",
+                footerText: "&copy; 2026 All Rights Reserved. Digital Design & Development Services.",
+                liveProjBtn: "Go to Live Project"
+            }
+        };
+
+        // Dil Değiştirme Fonksiyonu
+        function changeLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+
+            document.querySelectorAll("[data-i18n]").forEach(element => {
+                const key = element.getAttribute("data-i18n");
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+                const key = element.getAttribute("data-i18n-placeholder");
+                if (translations[lang] && translations[lang][key]) {
+                    element.setAttribute("placeholder", translations[lang][key]);
+                }
+            });
+
+            localStorage.setItem("selectedLanguage", lang);
+        }
+
+        // Tema (Dark / Light) Değiştirme Fonksiyonu
+        function toggleTheme() {
+            const htmlTag = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+
+            if (htmlTag.getAttribute('data-theme') === 'light') {
+                htmlTag.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlTag.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fa-solid fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Sayfa yüklendiğinde kayıtlı dil ve tema tercihlerini uygula
+        document.addEventListener("DOMContentLoaded", () => {
+            // Dil Ayarı
+            const savedLang = localStorage.getItem("selectedLanguage") || "tr";
+            changeLanguage(savedLang);
+
+            // Tema Ayarı
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            const themeIcon = document.getElementById('themeIcon');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fa-solid fa-sun';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+            }
+        });
+
         // Galeri İçerikleri Veritabanı
         const galleryData = {
             design: [
@@ -618,19 +810,19 @@
             const imgEl = document.getElementById('modalImg');
             const captionEl = document.getElementById('modalCaption');
             const linkContainer = document.getElementById('modalLinkContainer');
+            const currentLang = localStorage.getItem("selectedLanguage") || "tr";
+            const btnText = translations[currentLang].liveProjBtn;
 
             imgEl.src = item.src;
             captionEl.innerText = item.title;
 
-            // Eğer projenin canlı web adresi varsa buton çıkarır
             if (item.link) {
-                linkContainer.innerHTML = `<a href="${item.link}" target="_blank" class="btn gallery-action-btn">Canlı Projeye Git <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+                linkContainer.innerHTML = `<a href="${item.link}" target="_blank" class="btn gallery-action-btn">${btnText} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
             } else {
                 linkContainer.innerHTML = '';
             }
         }
 
-        // Klavye Tuş Kontrolleri (Sağ, Sol, ESC)
         document.addEventListener('keydown', function (e) {
             const modal = document.getElementById('galleryModal');
             if (modal.style.display === 'flex') {
@@ -640,7 +832,6 @@
             }
         });
 
-        // Modal dışındaki boşluğa tıklayınca kapatma
         document.getElementById('galleryModal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeGallery();
