@@ -4,34 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolyo | Dijital Tasarım & Web Geliştirme Hizmetleri</title>
+    <title>aedevx | Web, Tasarım & Unity Geliştirici</title>
     <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* CSS DEĞİŞKENLERİ (Tema Renkleri) */
         :root {
-            --bg-color: #0f172a;
+            --bg-color: #090d16;
+            --bg-secondary: #0f172a;
             --text-color: #f8fafc;
             --text-muted: #94a3b8;
-            --card-bg: #1e293b;
-            --border-color: #334155;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(51, 65, 85, 0.8);
             --primary: #38bdf8;
+            --secondary: #818cf8;
             --primary-hover: #0284c7;
             --switch-bg: #1e293b;
+            --grid-color: rgba(56, 189, 248, 0.04);
         }
 
         /* Aydınlık Mod Değişkenleri */
         [data-theme="light"] {
             --bg-color: #f8fafc;
+            --bg-secondary: #f1f5f9;
             --text-color: #0f172a;
-            --text-muted: #64748b;
-            --card-bg: #ffffff;
+            --text-muted: #475569;
+            --card-bg: rgba(255, 255, 255, 0.9);
             --border-color: #cbd5e1;
             --primary: #0284c7;
+            --secondary: #4f46e5;
             --primary-hover: #0369a1;
             --switch-bg: #e2e8f0;
+            --grid-color: rgba(2, 132, 199, 0.05);
         }
 
         * {
@@ -39,13 +46,32 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            background-image:
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* Arka Plan Üst Parlama Efekti */
+        .bg-glow {
+            position: fixed;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(129, 140, 248, 0.05) 50%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         a {
@@ -54,9 +80,9 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         /* Navigation */
@@ -64,41 +90,49 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 0;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            color: var(--primary);
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .nav-links a {
-            margin-left: 20px;
-            font-weight: 600;
+            margin-left: 24px;
+            font-weight: 500;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         .nav-links a:hover {
             color: var(--primary);
         }
 
-        /* Araçlar (Dil ve Tema Butonları Grubu) */
         .controls-group {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        /* Dil Değiştirici ve Tema Butonu */
-        .lang-switch, .theme-btn {
+        .lang-switch,
+        .theme-btn {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -108,171 +142,301 @@
             border: 1px solid var(--border-color);
         }
 
-        .lang-btn, .theme-btn {
+        .lang-btn,
+        .theme-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 6px 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
             border-radius: 6px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         .theme-btn {
-            padding: 6px 12px;
-            font-size: 1rem;
+            padding: 6px 11px;
+            font-size: 0.95rem;
         }
 
-        .lang-btn.active, .lang-btn:hover, .theme-btn:hover {
+        .lang-btn.active,
+        .lang-btn:hover,
+        .theme-btn:hover {
             background: var(--primary);
-            color: var(--bg-color);
+            color: #090d16;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 80px 0 60px;
+            padding: 90px 0 70px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.4rem;
             font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
             margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary), #818cf8);
-            background-clip: text;
+            background: linear-gradient(135deg, var(--text-color) 30%, var(--primary) 70%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            color: transparent;
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto 30px;
+            max-width: 640px;
+            margin: 0 auto 35px;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             background: var(--primary);
-            color: #fff;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: 0.3s;
+            color: #090d16;
+            padding: 13px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: 0.25s;
             border: none;
             cursor: pointer;
         }
 
         .btn:hover {
             background: var(--primary-hover);
+            color: #fff;
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            box-shadow: none;
         }
 
         /* Sections */
         section {
-            padding: 60px 0;
+            padding: 70px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: var(--text-color);
+            font-size: 2.1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
         }
 
-        /* Services Grid */
-        .grid {
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Grid Sistemleri */
+        .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
             gap: 25px;
         }
 
+        /* Hizmet Kartları */
         .card {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
+            backdrop-filter: blur(12px);
+            padding: 32px;
+            border-radius: 16px;
             border: 1px solid var(--border-color);
             transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
             border-color: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .card i {
-            font-size: 2.5rem;
+        .card-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .card h3 {
-            margin-bottom: 10px;
-            font-size: 1.25rem;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
 
         .card p {
             color: var(--text-muted);
             font-size: 0.95rem;
+            margin-bottom: 20px;
         }
 
-        /* Portfolio Items */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        /* Portfolyo Kartları */
         .portfolio-item {
             background: var(--card-bg);
-            border-radius: 12px;
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            transition: 0.3s;
         }
 
-        .portfolio-img {
+        .portfolio-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-6px);
+        }
+
+        .portfolio-banner {
             width: 100%;
-            height: 200px;
-            background: var(--border-color);
+            height: 170px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary);
-            font-size: 3rem;
+            font-size: 3.2rem;
+            position: relative;
+        }
+
+        .banner-web {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(2, 132, 199, 0.05));
+            color: #38bdf8;
+        }
+
+        .banner-design {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(225, 29, 72, 0.05));
+            color: #fb7185;
+        }
+
+        .banner-unity {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(126, 34, 206, 0.05));
+            color: #c084fc;
         }
 
         .portfolio-content {
-            padding: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            flex-grow: 1;
             justify-content: space-between;
         }
 
         .portfolio-content h3 {
             margin-bottom: 10px;
+            font-size: 1.25rem;
         }
 
         .portfolio-content p {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+            font-size: 0.92rem;
+            margin-bottom: 20px;
         }
 
+        /* İletişim Alanı */
         .contact-wrapper {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
             padding: 40px;
-            border-radius: 16px;
+            border-radius: 20px;
             border: 1px solid var(--border-color);
         }
 
         .contact-info h3 {
             font-size: 1.4rem;
             margin-bottom: 10px;
-            color: var(--text-color);
         }
 
         .contact-info p {
@@ -290,12 +454,18 @@
         .social-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 20px;
-            border-radius: 8px;
+            justify-content: space-between;
+            padding: 13px 20px;
+            border-radius: 10px;
             font-weight: 600;
             color: #fff;
-            transition: 0.3s;
+            transition: 0.25s;
+        }
+
+        .social-btn-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .social-btn.instagram {
@@ -310,9 +480,13 @@
             background: #229ED9;
         }
 
+        .social-btn.itch {
+            background: #fa5c5c;
+        }
+
         .social-btn:hover {
             transform: translateX(5px);
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         .contact-form {
@@ -324,14 +498,14 @@
         .contact-form input,
         .contact-form textarea {
             width: 100%;
-            padding: 12px 16px;
-            background: var(--bg-color);
+            padding: 14px 16px;
+            background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text-color);
             font-size: 0.95rem;
             outline: none;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         .contact-form input:focus,
@@ -346,6 +520,7 @@
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             font-size: 0.9rem;
+            margin-top: 40px;
         }
 
         /* ===== LIGHTBOX MODAL / GALERİ STİLLERİ ===== */
@@ -357,8 +532,8 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(8px);
+            background-color: rgba(9, 13, 22, 0.92);
+            backdrop-filter: blur(10px);
             justify-content: center;
             align-items: center;
         }
@@ -366,10 +541,11 @@
         .modal-container {
             position: relative;
             width: 90%;
-            max-width: 900px;
+            max-width: 920px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 15px;
         }
 
         .slide-content {
@@ -379,26 +555,33 @@
 
         .slide-content img {
             max-width: 100%;
-            max-height: 70vh;
-            border-radius: 12px;
+            max-height: 68vh;
+            border-radius: 14px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
             object-fit: contain;
+            background: #0f172a;
         }
 
         .slide-caption {
-            color: var(--text-color);
-            margin-top: 15px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            color: #f8fafc;
+            margin-top: 16px;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .slide-counter {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 4px;
         }
 
         .close-btn {
             position: absolute;
             top: -45px;
             right: 0;
-            color: var(--text-muted);
-            font-size: 32px;
+            color: #94a3b8;
+            font-size: 34px;
             cursor: pointer;
             transition: 0.2s;
         }
@@ -411,71 +594,69 @@
             background: var(--card-bg);
             color: var(--primary);
             border: 1px solid var(--border-color);
-            font-size: 24px;
-            width: 50px;
-            height: 50px;
+            font-size: 20px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.3s;
+            transition: 0.2s;
             user-select: none;
             flex-shrink: 0;
         }
 
         .nav-arrow:hover {
             background: var(--primary);
-            color: var(--bg-color);
-        }
-
-        .gallery-action-btn {
-            margin-top: 15px;
-            display: inline-block;
+            color: #090d16;
         }
 
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
             }
 
             .hero p {
                 font-size: 1rem;
             }
 
-            .modal-container {
-                width: 95%;
+            .contact-wrapper {
+                padding: 25px;
             }
 
             .nav-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="bg-glow"></div>
 
     <div class="container">
         <!-- Navigation -->
         <nav>
-            <div class="logo">&lt;DevDesign /&gt;</div>
+            <div class="logo">&lt;aedevx /&gt;</div>
             <div class="nav-right">
                 <div class="nav-links">
                     <a href="#hizmetler" data-i18n="navServices">Hizmetler</a>
                     <a href="#portfolyo" data-i18n="navPortfolio">Çalışmalarım</a>
                     <a href="#iletisim" data-i18n="navContact">İletişim</a>
                 </div>
-                
+
                 <div class="controls-group">
-                    <!-- Tema Değiştirici Buton (Güneş / Ay) -->
                     <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()" title="Tema Değiştir">
                         <i id="themeIcon" class="fa-solid fa-moon"></i>
                     </button>
 
-                    <!-- Dil Değiştirici Butonlar -->
                     <div class="lang-switch">
                         <button id="btn-tr" class="lang-btn active" onclick="changeLanguage('tr')">TR</button>
                         <button id="btn-en" class="lang-btn" onclick="changeLanguage('en')">EN</button>
@@ -486,66 +667,138 @@
 
         <!-- Hero Section -->
         <header class="hero">
-            <h1 data-i18n="heroTitle">Web & Dijital Tasarım Çözümleri</h1>
-            <p data-i18n="heroSub">Modern ön yüz geliştirme ve dikkat çekici grafik tasarımlarıyla projelerinize değer katıyorum. Hızlı teslimat ve dinamik çözümler.</p>
-            <a href="#portfolyo" class="btn" data-i18n="heroBtn">Çalışmalarımı İnceleyin</a>
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <span data-i18n="statusText">Yeni Projelere Açık & Hızlı Teslimat</span>
+            </div>
+            <h1 data-i18n="heroTitle">Web, Tasarım & Unity Oyun Çözümleri</h1>
+            <p data-i18n="heroSub">Modern web arayüzleri, yüksek tıklanma odaklı YouTube/sosyal medya tasarımları ve
+                Unity oyun mekanikleriyle projelerinize değer katıyorum.</p>
+            <div class="hero-btns">
+                <a href="#portfolyo" class="btn">
+                    <span data-i18n="heroBtn">Çalışmalarımı İncele</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <a href="#iletisim" class="btn btn-outline">
+                    <span data-i18n="heroContactBtn">Teklif Al</span>
+                </a>
+            </div>
         </header>
 
         <!-- Hizmetler Section -->
         <section id="hizmetler">
-            <h2 class="section-title" data-i18n="servicesTitle">Neler Yapıyorum?</h2>
-            <div class="grid">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="servicesTitle">Neler Yapıyorum?</h2>
+                <p class="section-subtitle" data-i18n="servicesSub">İhtiyacınıza özel, temiz kodlanmış ve estetik
+                    dijital çözümler</p>
+            </div>
+            <div class="grid-3">
+                <!-- Hizmet 1 -->
                 <div class="card">
-                    <i class="fa-solid fa-code"></i>
-                    <h3 data-i18n="service1Title">Frontend Geliştirme</h3>
-                    <p data-i18n="service1Desc">HTML5, CSS3 ve JavaScript ile dinamik, mobil uyumlu ve modern web arayüzleri tasarımı.</p>
+                    <div>
+                        <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                        <h3 data-i18n="service1Title">Frontend Geliştirme</h3>
+                        <p data-i18n="service1Desc">Kişisel bio siteleri, işletme açılış sayfaları (landing page) ve
+                            mobil uyumlu modern web arayüzleri.</p>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Responsive</span>
+                    </div>
                 </div>
+
+                <!-- Hizmet 2 -->
                 <div class="card">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <h3 data-i18n="service2Title">Unity Oyun Geliştirme</h3>
-                    <p data-i18n="service2Desc">Oyununuz için lazım olan mekanik kod yapısını düzenli bir şekilde halledip sizlere teslim eder.</p>
+                    <div>
+                        <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3 data-i18n="service3Title">Thumbnail & Grafik Tasarım</h3>
+                        <p data-i18n="service3Desc">İzlenme oranını artıran yüksek kontrastlı YouTube thumbnail, yayıncı
+                            banner ve marka logo tasarımları.</p>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tag">Thumbnail</span>
+                        <span class="tag">Banner</span>
+                        <span class="tag">Logo</span>
+                        <span class="tag">Photoshop</span>
+                    </div>
                 </div>
+
+                <!-- Hizmet 3 -->
                 <div class="card">
-                    <i class="fa-solid fa-image"></i>
-                    <h3 data-i18n="service3Title">Sosyal Medya & Grafik</h3>
-                    <p data-i18n="service3Desc">Photoshop ile YouTube thumbnail (kapak görseli), banner ve kurumsal logo tasarımları.</p>
+                    <div>
+                        <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+                        <h3 data-i18n="service2Title">Unity Oyun Geliştirme</h3>
+                        <p data-i18n="service2Desc">2D/3D oyun prototipleri, Game Jam projeleri ve oyunlarınız için
+                            temiz, modüler C# mekanik sistemleri.</p>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tag">Unity Engine</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">Game Jam</span>
+                        <span class="tag">Prototip</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Portfolyo Section -->
         <section id="portfolyo">
-            <h2 class="section-title" data-i18n="portfolioTitle">Öne Çıkan Çalışmalarım</h2>
-            <div class="grid">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="portfolioTitle">Öne Çıkan Çalışmalarım</h2>
+                <p class="section-subtitle" data-i18n="portfolioSub">Kategorilere tıklayarak örnek projeleri ve canlı
+                    demoları inceleyebilirsiniz</p>
+            </div>
+            <div class="grid-3">
 
-                <!-- Çalışma 1: Web Projeleri Galeri Kartı -->
+                <!-- Çalışma 1: Web Projeleri -->
                 <div class="portfolio-item">
-                    <div class="portfolio-img">
+                    <div class="portfolio-banner banner-web">
                         <i class="fa-solid fa-laptop-code"></i>
                     </div>
                     <div class="portfolio-content">
                         <div>
                             <h3 data-i18n="webCardTitle">Web Projeleri & Arayüzler</h3>
-                            <p data-i18n="webCardDesc">Canlı sürpriz web sitesi, kişisel portfolyo ve dinamik web uygulamaları galerisi.</p>
+                            <p data-i18n="webCardDesc">Canlı sürpriz web sitesi, berber/işletme konsept sitesi ve
+                                kişisel portfolyo arayüzleri.</p>
                         </div>
-                        <button class="btn" onclick="openGallery('web')" style="width: 100%; margin-top: 10px;">
+                        <button class="btn" onclick="openGallery('web')" style="width: 100%;">
                             <span data-i18n="webCardBtn">Projeleri İncele</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Çalışma 2: Tasarım Projeleri Galeri Kartı -->
+                <!-- Çalışma 2: Tasarım Projeleri -->
                 <div class="portfolio-item">
-                    <div class="portfolio-img">
+                    <div class="portfolio-banner banner-design">
                         <i class="fa-solid fa-paintbrush"></i>
                     </div>
                     <div class="portfolio-content">
                         <div>
-                            <h3 data-i18n="designCardTitle">YouTube Thumbnail & Banner</h3>
-                            <p data-i18n="designCardDesc">Yüksek kontrastlı, dikkat çekici oyun ve içerik üretici kapak görselleri ile tasarımlar.</p>
+                            <h3 data-i18n="designCardTitle">Thumbnail, Banner & Logo</h3>
+                            <p data-i18n="designCardDesc">Valorant, CS2, EA FC gibi oyun kanalları ve içerik üreticileri
+                                için dikkat çekici kapak tasarımları.</p>
                         </div>
-                        <button class="btn" onclick="openGallery('design')" style="width: 100%; margin-top: 10px;">
+                        <button class="btn" onclick="openGallery('design')" style="width: 100%;">
                             <span data-i18n="designCardBtn">Tasarımları İncele</span> <i class="fa-solid fa-image"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Çalışma 3: Unity & Game Jam Projeleri -->
+                <div class="portfolio-item">
+                    <div class="portfolio-banner banner-unity">
+                        <i class="fa-brands fa-unity"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <div>
+                            <h3 data-i18n="unityCardTitle">Unity & Game Jam Oyunları</h3>
+                            <p data-i18n="unityCardDesc">Kısıtlı sürede geliştirilen Game Jam projeleri, oynanış
+                                mekanikleri ve prototip çalışmaları.</p>
+                        </div>
+                        <button class="btn" onclick="openGallery('unity')" style="width: 100%;">
+                            <span data-i18n="unityCardBtn">Oyunları İncele</span> <i class="fa-solid fa-gamepad"></i>
                         </button>
                     </div>
                 </div>
@@ -555,44 +808,67 @@
 
         <!-- İletişim Section -->
         <section id="iletisim">
-            <h2 class="section-title" data-i18n="contactTitle">Benimle İletişime Geçin</h2>
-            <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;" data-i18n="contactSub">
-                Projeniz için teklif almak, özel tasarım/yazılım taleplerinizi iletmek veya doğrudan görüşmek için aşağıdaki kanalları kullanabilirsiniz.
-            </p>
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="contactTitle">Benimle İletişime Geçin</h2>
+                <p class="section-subtitle" data-i18n="contactSub">
+                    Projeniz için fiyat teklifi almak veya fikirlerinizi konuşmak için en hızlı kanaldan
+                    ulaşabilirsiniz.
+                </p>
+            </div>
 
             <div class="contact-wrapper">
                 <!-- Sol Taraf: Hızlı İletişim Butonları -->
                 <div class="contact-info">
                     <h3 data-i18n="quickContactTitle">Hızlı İletişim Kanalları</h3>
-                    <p data-i18n="quickContactDesc">En hızlı dönüşü Discord ve Instagram DM üzerinden sağlıyorum.</p>
+                    <p data-i18n="quickContactDesc">Genellikle 15-30 dakika içinde Discord ve Instagram üzerinden dönüş
+                        yapıyorum.</p>
 
                     <div class="social-links">
-                        <a href="https://instagram.com/aedevx" target="_blank" class="social-btn instagram">
-                            <i class="fa-brands fa-instagram"></i> Instagram DM
-                        </a>
                         <a href="https://discord.com/users/1288142159639482401" target="_blank"
                             class="social-btn discord">
-                            <i class="fa-brands fa-discord"></i> <span data-i18n="discordText">Discord Mesaj</span>
+                            <span class="social-btn-left"><i class="fa-brands fa-discord"></i> <span
+                                    data-i18n="discordText">Discord Üzerinden Yaz</span></span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <a href="https://instagram.com/aedevx" target="_blank" class="social-btn instagram">
+                            <span class="social-btn-left"><i class="fa-brands fa-instagram"></i> Instagram DM
+                                (@aedevx)</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
                         <a href="https://t.me/AExDEV" target="_blank" class="social-btn telegram">
-                            <i class="fa-brands fa-telegram"></i> <span data-i18n="telegramText">Telegram Mesaj</span>
+                            <span class="social-btn-left"><i class="fa-brands fa-telegram"></i> <span
+                                    data-i18n="telegramText">Telegram Mesaj</span></span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <!-- itch.io veya ItemSatış profil linkini buraya ekleyebilirsin -->
+                        <a href="https://ae-dev.itch.io/" target="_blank" class="social-btn itch">
+                            <span class="social-btn-left"><i class="fa-brands fa-itch-io"></i> <span
+                                    data-i18n="itchText">itch.io Oyun Profilim</span></span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Sağ Taraf: Hızlı Mesaj Formu -->
                 <form class="contact-form" action="https://formspree.io/f/mgavgbyk" method="POST">
-                    <input type="text" name="name" placeholder="Adınız / Marka Adınız" data-i18n-placeholder="namePlaceholder" required>
-                    <input type="email" name="email" placeholder="E-Posta Adresiniz veya Telefon" data-i18n-placeholder="emailPlaceholder" required>
-                    <textarea name="message" rows="4" placeholder="Projenizden veya ihtiyacınızdan kısaca bahsedin..." data-i18n-placeholder="msgPlaceholder" required></textarea>
-                    <button type="submit" class="btn" style="width: 100%;" data-i18n="submitBtn">Teklif Al / Mesaj Gönder</button>
+                    <input type="text" name="name" placeholder="Adınız / Kanal veya Marka Adınız"
+                        data-i18n-placeholder="namePlaceholder" required>
+                    <input type="text" name="email" placeholder="Discord Kullanıcı Adınız, E-Posta veya Telefon"
+                        data-i18n-placeholder="emailPlaceholder" required>
+                    <textarea name="message" rows="4"
+                        placeholder="İhtiyacınız nedir? (Örn: YouTube Thumbnail paketi, Kişisel Web Sitesi, Unity mekanik...)"
+                        data-i18n-placeholder="msgPlaceholder" required></textarea>
+                    <button type="submit" class="btn" style="width: 100%;">
+                        <span data-i18n="submitBtn">Teklif Al / Mesaj Gönder</span> <i
+                            class="fa-solid fa-paper-plane"></i>
+                    </button>
                 </form>
             </div>
         </section>
 
         <!-- Footer -->
         <footer>
-            <p data-i18n="footerText">&copy; 2026 Tüm Hakları Saklıdır. Dijital Tasarım & Yazılım Hizmetleri.</p>
+            <p data-i18n="footerText">&copy; 2026 aedevx. Tüm Hakları Saklıdır.</p>
         </footer>
     </div>
 
@@ -601,19 +877,17 @@
         <div class="modal-container">
             <span class="close-btn" onclick="closeGallery()">&times;</span>
 
-            <!-- Sol Ok -->
             <button class="nav-arrow" onclick="changeSlide(-1)">
                 <i class="fa-solid fa-chevron-left"></i>
             </button>
 
-            <!-- Görsel ve Açıklama Alanı -->
             <div class="slide-content">
                 <img id="modalImg" src="" alt="Portfolyo Çalışması">
                 <div id="modalCaption" class="slide-caption"></div>
+                <div id="modalCounter" class="slide-counter"></div>
                 <div id="modalLinkContainer" style="margin-top: 15px;"></div>
             </div>
 
-            <!-- Sağ Ok -->
             <button class="nav-arrow" onclick="changeSlide(1)">
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
@@ -622,79 +896,93 @@
 
     <!-- JavaScript Galeri, Dil ve Tema Desteği Mantığı -->
     <script>
-        // Çeviri Sözlüğü (TR / EN)
         const translations = {
             tr: {
                 navServices: "Hizmetler",
                 navPortfolio: "Çalışmalarım",
                 navContact: "İletişim",
-                heroTitle: "Web & Dijital Tasarım Çözümleri",
-                heroSub: "Modern ön yüz geliştirme ve dikkat çekici grafik tasarımlarıyla projelerinize değer katıyorum. Hızlı teslimat ve dinamik çözümler.",
-                heroBtn: "Çalışmalarımı İnceleyin",
+                statusText: "Yeni Projelere Açık & Hızlı Teslimat",
+                heroTitle: "Web, Tasarım & Unity Oyun Çözümleri",
+                heroSub: "Modern web arayüzleri, yüksek tıklanma odaklı YouTube/sosyal medya tasarımları ve Unity oyun mekanikleriyle projelerinize değer katıyorum.",
+                heroBtn: "Çalışmalarımı İncele",
+                heroContactBtn: "Teklif Al",
                 servicesTitle: "Neler Yapıyorum?",
+                servicesSub: "İhtiyacınıza özel, temiz kodlanmış ve estetik dijital çözümler",
                 service1Title: "Frontend Geliştirme",
-                service1Desc: "HTML5, CSS3 ve JavaScript ile dinamik, mobil uyumlu ve modern web arayüzleri tasarımı.",
+                service1Desc: "Kişisel bio siteleri, işletme açılış sayfaları (landing page) ve mobil uyumlu modern web arayüzleri.",
+                service3Title: "Thumbnail & Grafik Tasarım",
+                service3Desc: "İzlenme oranını artıran yüksek kontrastlı YouTube thumbnail, yayıncı banner ve marka logo tasarımları.",
                 service2Title: "Unity Oyun Geliştirme",
-                service2Desc: "Oyununuz için lazım olan mekanik kod yapısını düzenli bir şekilde halledip sizlere teslim eder.",
-                service3Title: "Sosyal Medya & Grafik",
-                service3Desc: "Photoshop ile YouTube thumbnail (kapak görseli), banner ve kurumsal logo tasarımları.",
+                service2Desc: "2D/3D oyun prototipleri, Game Jam projeleri ve oyunlarınız için temiz, modüler C# mekanik sistemleri.",
                 portfolioTitle: "Öne Çıkan Çalışmalarım",
+                portfolioSub: "Kategorilere tıklayarak örnek projeleri ve canlı demoları inceleyebilirsiniz",
                 webCardTitle: "Web Projeleri & Arayüzler",
-                webCardDesc: "Canlı sürpriz web sitesi, kişisel portfolyo ve dinamik web uygulamaları galerisi.",
+                webCardDesc: "Canlı sürpriz web sitesi, berber/işletme konsept sitesi ve kişisel portfolyo arayüzleri.",
                 webCardBtn: "Projeleri İncele",
-                designCardTitle: "YouTube Thumbnail & Banner",
-                designCardDesc: "Yüksek kontrastlı, dikkat çekici oyun ve içerik üretici kapak görselleri ile tasarımlar.",
+                designCardTitle: "Thumbnail, Banner & Logo",
+                designCardDesc: "Valorant, CS2, EA FC gibi oyun kanalları ve içerik üreticileri için dikkat çekici kapak tasarımları.",
                 designCardBtn: "Tasarımları İncele",
+                unityCardTitle: "Unity & Game Jam Oyunları",
+                unityCardDesc: "Kısıtlı sürede geliştirilen Game Jam projeleri, oynanış mekanikleri ve prototip çalışmaları.",
+                unityCardBtn: "Oyunları İncele",
                 contactTitle: "Benimle İletişime Geçin",
-                contactSub: "Projeniz için teklif almak, özel tasarım/yazılım taleplerinizi iletmek veya doğrudan görüşmek için aşağıdaki kanalları kullanabilirsiniz.",
+                contactSub: "Projeniz için fiyat teklifi almak veya fikirlerinizi konuşmak için en hızlı kanaldan ulaşabilirsiniz.",
                 quickContactTitle: "Hızlı İletişim Kanalları",
-                quickContactDesc: "En hızlı dönüşü Discord ve Instagram DM üzerinden sağlıyorum.",
-                discordText: "Discord Mesaj",
+                quickContactDesc: "Genellikle 15-30 dakika içinde Discord ve Instagram üzerinden dönüş yapıyorum.",
+                discordText: "Discord Üzerinden Yaz",
                 telegramText: "Telegram Mesaj",
-                namePlaceholder: "Adınız / Marka Adınız",
-                emailPlaceholder: "E-Posta Adresiniz veya Telefon",
-                msgPlaceholder: "Projenizden veya ihtiyacınızdan kısaca bahsedin...",
+                itchText: "itch.io Oyun Profilim",
+                namePlaceholder: "Adınız / Kanal veya Marka Adınız",
+                emailPlaceholder: "Discord Kullanıcı Adınız, E-Posta veya Telefon",
+                msgPlaceholder: "İhtiyacınız nedir? (Örn: YouTube Thumbnail paketi, Kişisel Web Sitesi, Unity mekanik...)",
                 submitBtn: "Teklif Al / Mesaj Gönder",
-                footerText: "&copy; 2026 Tüm Hakları Saklıdır. Dijital Tasarım & Yazılım Hizmetleri.",
-                liveProjBtn: "Canlı Projeye Git"
+                footerText: "&copy; 2026 aedevx. Tüm Hakları Saklıdır.",
+                liveProjBtn: "Canlı Projeye / Oyuna Git"
             },
             en: {
                 navServices: "Services",
                 navPortfolio: "Portfolio",
                 navContact: "Contact",
-                heroTitle: "Web & Digital Design Solutions",
-                heroSub: "Adding value to your projects with modern front-end development and eye-catching graphic designs. Fast delivery and dynamic solutions.",
+                statusText: "Available for New Projects & Fast Delivery",
+                heroTitle: "Web, Design & Unity Game Solutions",
+                heroSub: "Adding value to your projects with modern web interfaces, high-CTR YouTube/social media designs, and clean Unity game mechanics.",
                 heroBtn: "View My Work",
+                heroContactBtn: "Get a Quote",
                 servicesTitle: "What I Do?",
+                servicesSub: "Tailored, clean-coded, and aesthetic digital solutions for your needs",
                 service1Title: "Frontend Development",
-                service1Desc: "Designing dynamic, mobile-friendly, and modern web interfaces using HTML5, CSS3, and JavaScript.",
+                service1Desc: "Personal bio pages, business landing pages, and mobile-friendly modern web interfaces.",
+                service3Title: "Thumbnail & Graphic Design",
+                service3Desc: "High-contrast YouTube thumbnails, streamer banners, and brand logos designed to boost clicks.",
                 service2Title: "Unity Game Development",
-                service2Desc: "Delivering clean and well-structured mechanic code systems tailored for your game.",
-                service3Title: "Social Media & Graphics",
-                service3Desc: "Creating YouTube thumbnails, banners, and corporate logos using Photoshop.",
+                service2Desc: "2D/3D game prototypes, Game Jam entries, and clean, modular C# mechanic systems for your games.",
                 portfolioTitle: "Featured Works",
+                portfolioSub: "Click on categories to explore sample projects and live demos",
                 webCardTitle: "Web Projects & Interfaces",
-                webCardDesc: "Live surprise website, personal portfolio, and dynamic web application gallery.",
+                webCardDesc: "Live surprise website, barbershop concept site, and personal portfolio interfaces.",
                 webCardBtn: "Explore Projects",
-                designCardTitle: "YouTube Thumbnail & Banner",
-                designCardDesc: "High-contrast, eye-catching gaming and content creator cover graphics and designs.",
+                designCardTitle: "Thumbnail, Banner & Logo",
+                designCardDesc: "Eye-catching cover graphics for gaming channels (Valorant, CS2, EA FC) and content creators.",
                 designCardBtn: "Explore Designs",
+                unityCardTitle: "Unity & Game Jam Games",
+                unityCardDesc: "Game Jam projects built under tight deadlines, gameplay mechanics, and prototype builds.",
+                unityCardBtn: "Explore Games",
                 contactTitle: "Get In Touch",
-                contactSub: "You can use the channels below to get a quote for your project, submit custom design/software requests, or discuss directly.",
+                contactSub: "Reach out through the fastest channel to get a quote or discuss your project ideas.",
                 quickContactTitle: "Quick Contact Channels",
-                quickContactDesc: "I provide the fastest response via Discord and Instagram DM.",
-                discordText: "Discord Message",
+                quickContactDesc: "I usually respond within 15-30 minutes via Discord and Instagram.",
+                discordText: "Message on Discord",
                 telegramText: "Telegram Message",
-                namePlaceholder: "Your Name / Brand Name",
-                emailPlaceholder: "Your Email Address or Phone",
-                msgPlaceholder: "Briefly mention your project or needs...",
+                itchText: "My itch.io Game Profile",
+                namePlaceholder: "Your Name / Channel or Brand Name",
+                emailPlaceholder: "Your Discord Username, Email or Phone",
+                msgPlaceholder: "What do you need? (e.g., YouTube Thumbnail pack, Personal Website, Unity mechanic...)",
                 submitBtn: "Get a Quote / Send Message",
-                footerText: "&copy; 2026 All Rights Reserved. Digital Design & Development Services.",
-                liveProjBtn: "Go to Live Project"
+                footerText: "&copy; 2026 aedevx. All Rights Reserved.",
+                liveProjBtn: "Go to Live Project / Game"
             }
         };
 
-        // Dil Değiştirme Fonksiyonu
         function changeLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
@@ -714,9 +1002,11 @@
             });
 
             localStorage.setItem("selectedLanguage", lang);
+            if (document.getElementById('galleryModal').style.display === 'flex') {
+                updateModalContent();
+            }
         }
 
-        // Tema (Dark / Light) Değiştirme Fonksiyonu
         function toggleTheme() {
             const htmlTag = document.documentElement;
             const themeIcon = document.getElementById('themeIcon');
@@ -732,13 +1022,10 @@
             }
         }
 
-        // Sayfa yüklendiğinde kayıtlı dil ve tema tercihlerini uygula
         document.addEventListener("DOMContentLoaded", () => {
-            // Dil Ayarı
             const savedLang = localStorage.getItem("selectedLanguage") || "tr";
             changeLanguage(savedLang);
 
-            // Tema Ayarı
             const savedTheme = localStorage.getItem("theme") || "dark";
             const themeIcon = document.getElementById('themeIcon');
             if (savedTheme === 'light') {
@@ -750,37 +1037,58 @@
             }
         });
 
-        // Galeri İçerikleri Veritabanı
+        // Galeri İçerikleri Veritabanı (Unity kategorisi eklendi!)
         const galleryData = {
             design: [
                 {
                     src: "images/yeni_takimlar.png",
-                    title: "EA FC 27 - Kulüp Oluşturma Fikirleri Thumbnail Tasarımı"
+                    titleTr: "EA FC 27 - Kulüp Oluşturma Fikirleri Thumbnail Tasarımı",
+                    titleEn: "EA FC 27 - Club Creation Ideas Thumbnail Design"
                 },
                 {
                     src: "images/valorant_thumbnail.png",
-                    title: "Valorant Oyun İçi Thumbnail Tasarımı"
+                    titleTr: "Valorant Oyun İçi Thumbnail Tasarımı",
+                    titleEn: "Valorant In-Game Thumbnail Design"
                 },
                 {
                     src: "images/cs2.png",
-                    title: "Cs2 1v4 Clutch Thumbnail Tasarımı"
+                    titleTr: "CS2 1v4 Clutch Thumbnail Tasarımı",
+                    titleEn: "CS2 1v4 Clutch Thumbnail Design"
                 }
             ],
             web: [
                 {
                     src: "images/surpriz-web.png",
-                    title: "Kişiye Özel Sürpriz Web Sitesi (Canlı Sayaç & Müzik)",
+                    titleTr: "Kişiye Özel Sürpriz Web Sitesi (Canlı Sayaç & Müzik)",
+                    titleEn: "Custom Surprise Website (Live Countdown & Music)",
                     link: "https://surpiz-web.vercel.app/"
                 },
                 {
                     src: "images/bio.png",
-                    title: "Portfolyo & Kişisel Bio Web Sitesi Tasarımı",
-                    link: "https://aexdev.vercel.app/"
+                    titleTr: "Portfolyo & Kişisel Bio Web Sitesi Tasarımı",
+                    titleEn: "Portfolio & Personal Bio Website Design",
+                    link: "https://aedevx.vercel.app/"
                 },
                 {
                     src: "images/barber.png",
-                    title: "Barber Shop Web Sitesi Tasarımı",
+                    titleTr: "The Crown Barber Shop Konsept Web Sitesi",
+                    titleEn: "The Crown Barber Shop Concept Website",
                     link: "https://the-crown-barbershop.vercel.app/"
+                }
+            ],
+            unity: [
+                {
+
+                    src: "images/slimegame.png",
+                    titleTr: "Game Jam Projesi #1",
+                    titleEn: "Game Jam Project #1",
+                    link: "https://ae-dev.itch.io/slime-color-rush"
+                },
+                {
+                    src: "images/sharkgame.png",
+                    titleTr: "Game Jam Projesi #2",
+                    titleEn: "Game Jam Project #2",
+                    link: "https://ae-dev.itch.io/deep-trash"
                 }
             ]
         };
@@ -806,18 +1114,21 @@
         }
 
         function updateModalContent() {
-            const item = galleryData[currentCategory][currentIndex];
+            const list = galleryData[currentCategory];
+            const item = list[currentIndex];
             const imgEl = document.getElementById('modalImg');
             const captionEl = document.getElementById('modalCaption');
+            const counterEl = document.getElementById('modalCounter');
             const linkContainer = document.getElementById('modalLinkContainer');
             const currentLang = localStorage.getItem("selectedLanguage") || "tr";
             const btnText = translations[currentLang].liveProjBtn;
 
             imgEl.src = item.src;
-            captionEl.innerText = item.title;
+            captionEl.innerText = currentLang === 'tr' ? item.titleTr : item.titleEn;
+            counterEl.innerText = `${currentIndex + 1} / ${list.length}`;
 
             if (item.link) {
-                linkContainer.innerHTML = `<a href="${item.link}" target="_blank" class="btn gallery-action-btn">${btnText} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+                linkContainer.innerHTML = `<a href="${item.link}" target="_blank" class="btn">${btnText} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
             } else {
                 linkContainer.innerHTML = '';
             }
