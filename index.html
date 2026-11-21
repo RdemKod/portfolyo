@@ -361,67 +361,6 @@
             color: var(--text-muted);
         }
 
-        /* Portfolyo Kartları */
-        .portfolio-item {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            transition: 0.3s;
-        }
-
-        .portfolio-item:hover {
-            border-color: var(--primary);
-            transform: translateY(-6px);
-        }
-
-        .portfolio-banner {
-            width: 100%;
-            height: 170px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.2rem;
-            position: relative;
-        }
-
-        .banner-web {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(2, 132, 199, 0.05));
-            color: #38bdf8;
-        }
-
-        .banner-design {
-            background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(225, 29, 72, 0.05));
-            color: #fb7185;
-        }
-
-        .banner-unity {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(126, 34, 206, 0.05));
-            color: #c084fc;
-        }
-
-        .portfolio-content {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-
-        .portfolio-content h3 {
-            margin-bottom: 10px;
-            font-size: 1.25rem;
-        }
-
-        .portfolio-content p {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            margin-bottom: 20px;
-        }
-
         /* İletişim Alanı */
         .contact-wrapper {
             display: grid;
@@ -676,7 +615,7 @@
                 Unity oyun mekanikleriyle projelerinize değer katıyorum.</p>
             <div class="hero-btns">
                 <a href="#portfolyo" class="btn">
-                    <span data-i18n="heroBtn">Çalışmalarımı İncele</span>
+                    <span data-i18n="heroBtn">Vitrin Sitesine Git</span>
                     <i class="fa-solid fa-arrow-down"></i>
                 </a>
                 <a href="#iletisim" class="btn btn-outline">
@@ -743,68 +682,8 @@
             </div>
         </section>
 
-        <!-- Portfolyo Section -->
-        <section id="portfolyo">
-            <div class="section-header">
-                <h2 class="section-title" data-i18n="portfolioTitle">Öne Çıkan Çalışmalarım</h2>
-                <p class="section-subtitle" data-i18n="portfolioSub">Kategorilere tıklayarak örnek projeleri ve canlı
-                    demoları inceleyebilirsiniz</p>
-            </div>
-            <div class="grid-3">
-
-                <!-- Çalışma 1: Web Projeleri -->
-                <div class="portfolio-item">
-                    <div class="portfolio-banner banner-web">
-                        <i class="fa-solid fa-laptop-code"></i>
-                    </div>
-                    <div class="portfolio-content">
-                        <div>
-                            <h3 data-i18n="webCardTitle">Web Projeleri & Arayüzler</h3>
-                            <p data-i18n="webCardDesc">Canlı sürpriz web sitesi, berber/işletme konsept sitesi ve
-                                kişisel portfolyo arayüzleri.</p>
-                        </div>
-                        <button class="btn" onclick="openGallery('web')" style="width: 100%;">
-                            <span data-i18n="webCardBtn">Projeleri İncele</span> <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Çalışma 2: Tasarım Projeleri -->
-                <div class="portfolio-item">
-                    <div class="portfolio-banner banner-design">
-                        <i class="fa-solid fa-paintbrush"></i>
-                    </div>
-                    <div class="portfolio-content">
-                        <div>
-                            <h3 data-i18n="designCardTitle">Thumbnail, Banner & Logo</h3>
-                            <p data-i18n="designCardDesc">Valorant, CS2, EA FC gibi oyun kanalları ve içerik üreticileri
-                                için dikkat çekici kapak tasarımları.</p>
-                        </div>
-                        <button class="btn" onclick="openGallery('design')" style="width: 100%;">
-                            <span data-i18n="designCardBtn">Tasarımları İncele</span> <i class="fa-solid fa-image"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Çalışma 3: Unity & Game Jam Projeleri -->
-                <div class="portfolio-item">
-                    <div class="portfolio-banner banner-unity">
-                        <i class="fa-brands fa-unity"></i>
-                    </div>
-                    <div class="portfolio-content">
-                        <div>
-                            <h3 data-i18n="unityCardTitle">Unity & Game Jam Oyunları</h3>
-                            <p data-i18n="unityCardDesc">Kısıtlı sürede geliştirilen Game Jam projeleri, oynanış
-                                mekanikleri ve prototip çalışmaları.</p>
-                        </div>
-                        <button class="btn" onclick="openGallery('unity')" style="width: 100%;">
-                            <span data-i18n="unityCardBtn">Oyunları İncele</span> <i class="fa-solid fa-gamepad"></i>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
+        
+      
 
         <!-- İletişim Section -->
         <section id="iletisim">
@@ -895,16 +774,15 @@
     </div>
 
     <!-- JavaScript Galeri, Dil ve Tema Desteği Mantığı -->
-    <script>
+<script>
         const translations = {
             tr: {
                 navServices: "Hizmetler",
-                navPortfolio: "Çalışmalarım",
                 navContact: "İletişim",
                 statusText: "Yeni Projelere Açık & Hızlı Teslimat",
                 heroTitle: "Web, Tasarım & Unity Oyun Çözümleri",
                 heroSub: "Modern web arayüzleri, yüksek tıklanma odaklı YouTube/sosyal medya tasarımları ve Unity oyun mekanikleriyle projelerinize değer katıyorum.",
-                heroBtn: "Çalışmalarımı İncele",
+                heroBtn: "Vitrin Sitesine Git",
                 heroContactBtn: "Teklif Al",
                 servicesTitle: "Neler Yapıyorum?",
                 servicesSub: "İhtiyacınıza özel, temiz kodlanmış ve estetik dijital çözümler",
@@ -914,17 +792,6 @@
                 service3Desc: "İzlenme oranını artıran yüksek kontrastlı YouTube thumbnail, yayıncı banner ve marka logo tasarımları.",
                 service2Title: "Unity Oyun Geliştirme",
                 service2Desc: "2D/3D oyun prototipleri, Game Jam projeleri ve oyunlarınız için temiz, modüler C# mekanik sistemleri.",
-                portfolioTitle: "Öne Çıkan Çalışmalarım",
-                portfolioSub: "Kategorilere tıklayarak örnek projeleri ve canlı demoları inceleyebilirsiniz",
-                webCardTitle: "Web Projeleri & Arayüzler",
-                webCardDesc: "Canlı sürpriz web sitesi, berber/işletme konsept sitesi ve kişisel portfolyo arayüzleri.",
-                webCardBtn: "Projeleri İncele",
-                designCardTitle: "Thumbnail, Banner & Logo",
-                designCardDesc: "Valorant, CS2, EA FC gibi oyun kanalları ve içerik üreticileri için dikkat çekici kapak tasarımları.",
-                designCardBtn: "Tasarımları İncele",
-                unityCardTitle: "Unity & Game Jam Oyunları",
-                unityCardDesc: "Kısıtlı sürede geliştirilen Game Jam projeleri, oynanış mekanikleri ve prototip çalışmaları.",
-                unityCardBtn: "Oyunları İncele",
                 contactTitle: "Benimle İletişime Geçin",
                 contactSub: "Projeniz için fiyat teklifi almak veya fikirlerinizi konuşmak için en hızlı kanaldan ulaşabilirsiniz.",
                 quickContactTitle: "Hızlı İletişim Kanalları",
@@ -936,17 +803,15 @@
                 emailPlaceholder: "Discord Kullanıcı Adınız, E-Posta veya Telefon",
                 msgPlaceholder: "İhtiyacınız nedir? (Örn: YouTube Thumbnail paketi, Kişisel Web Sitesi, Unity mekanik...)",
                 submitBtn: "Teklif Al / Mesaj Gönder",
-                footerText: "&copy; 2026 aedevx. Tüm Hakları Saklıdır.",
-                liveProjBtn: "Canlı Projeye / Oyuna Git"
+                footerText: "&copy; 2026 aedevx. Tüm Hakları Saklıdır."
             },
             en: {
                 navServices: "Services",
-                navPortfolio: "Portfolio",
                 navContact: "Contact",
                 statusText: "Available for New Projects & Fast Delivery",
                 heroTitle: "Web, Design & Unity Game Solutions",
                 heroSub: "Adding value to your projects with modern web interfaces, high-CTR YouTube/social media designs, and clean Unity game mechanics.",
-                heroBtn: "View My Work",
+                heroBtn: "Go to Showcase",
                 heroContactBtn: "Get a Quote",
                 servicesTitle: "What I Do?",
                 servicesSub: "Tailored, clean-coded, and aesthetic digital solutions for your needs",
@@ -956,17 +821,6 @@
                 service3Desc: "High-contrast YouTube thumbnails, streamer banners, and brand logos designed to boost clicks.",
                 service2Title: "Unity Game Development",
                 service2Desc: "2D/3D game prototypes, Game Jam entries, and clean, modular C# mechanic systems for your games.",
-                portfolioTitle: "Featured Works",
-                portfolioSub: "Click on categories to explore sample projects and live demos",
-                webCardTitle: "Web Projects & Interfaces",
-                webCardDesc: "Live surprise website, barbershop concept site, and personal portfolio interfaces.",
-                webCardBtn: "Explore Projects",
-                designCardTitle: "Thumbnail, Banner & Logo",
-                designCardDesc: "Eye-catching cover graphics for gaming channels (Valorant, CS2, EA FC) and content creators.",
-                designCardBtn: "Explore Designs",
-                unityCardTitle: "Unity & Game Jam Games",
-                unityCardDesc: "Game Jam projects built under tight deadlines, gameplay mechanics, and prototype builds.",
-                unityCardBtn: "Explore Games",
                 contactTitle: "Get In Touch",
                 contactSub: "Reach out through the fastest channel to get a quote or discuss your project ideas.",
                 quickContactTitle: "Quick Contact Channels",
@@ -978,8 +832,7 @@
                 emailPlaceholder: "Your Discord Username, Email or Phone",
                 msgPlaceholder: "What do you need? (e.g., YouTube Thumbnail pack, Personal Website, Unity mechanic...)",
                 submitBtn: "Get a Quote / Send Message",
-                footerText: "&copy; 2026 aedevx. All Rights Reserved.",
-                liveProjBtn: "Go to Live Project / Game"
+                footerText: "&copy; 2026 aedevx. All Rights Reserved."
             }
         };
 
@@ -1002,9 +855,6 @@
             });
 
             localStorage.setItem("selectedLanguage", lang);
-            if (document.getElementById('galleryModal').style.display === 'flex') {
-                updateModalContent();
-            }
         }
 
         function toggleTheme() {
@@ -1036,118 +886,7 @@
                 themeIcon.className = 'fa-solid fa-moon';
             }
         });
-
-        // Galeri İçerikleri Veritabanı (Unity kategorisi eklendi!)
-        const galleryData = {
-            design: [
-                {
-                    src: "images/yeni_takimlar.png",
-                    titleTr: "EA FC 27 - Kulüp Oluşturma Fikirleri Thumbnail Tasarımı",
-                    titleEn: "EA FC 27 - Club Creation Ideas Thumbnail Design"
-                },
-                {
-                    src: "images/valorant_thumbnail.png",
-                    titleTr: "Valorant Oyun İçi Thumbnail Tasarımı",
-                    titleEn: "Valorant In-Game Thumbnail Design"
-                },
-                {
-                    src: "images/cs2.png",
-                    titleTr: "CS2 1v4 Clutch Thumbnail Tasarımı",
-                    titleEn: "CS2 1v4 Clutch Thumbnail Design"
-                }
-            ],
-            web: [
-                {
-                    src: "images/surpriz-web.png",
-                    titleTr: "Kişiye Özel Sürpriz Web Sitesi (Canlı Sayaç & Müzik)",
-                    titleEn: "Custom Surprise Website (Live Countdown & Music)",
-                    link: "https://surpiz-web.vercel.app/"
-                },
-                {
-                    src: "images/bio.png",
-                    titleTr: "Portfolyo & Kişisel Bio Web Sitesi Tasarımı",
-                    titleEn: "Portfolio & Personal Bio Website Design",
-                    link: "https://aedevx.vercel.app/"
-                },
-                {
-                    src: "images/barber.png",
-                    titleTr: "The Crown Barber Shop Konsept Web Sitesi",
-                    titleEn: "The Crown Barber Shop Concept Website",
-                    link: "https://the-crown-barbershop.vercel.app/"
-                }
-            ],
-            unity: [
-                {
-
-                    src: "images/slimegame.png",
-                    titleTr: "Game Jam Projesi #1",
-                    titleEn: "Game Jam Project #1",
-                    link: "https://ae-dev.itch.io/slime-color-rush"
-                },
-                {
-                    src: "images/sharkgame.png",
-                    titleTr: "Game Jam Projesi #2",
-                    titleEn: "Game Jam Project #2",
-                    link: "https://ae-dev.itch.io/deep-trash"
-                }
-            ]
-        };
-
-        let currentCategory = 'design';
-        let currentIndex = 0;
-
-        function openGallery(category) {
-            currentCategory = category;
-            currentIndex = 0;
-            document.getElementById('galleryModal').style.display = 'flex';
-            updateModalContent();
-        }
-
-        function closeGallery() {
-            document.getElementById('galleryModal').style.display = 'none';
-        }
-
-        function changeSlide(direction) {
-            const list = galleryData[currentCategory];
-            currentIndex = (currentIndex + direction + list.length) % list.length;
-            updateModalContent();
-        }
-
-        function updateModalContent() {
-            const list = galleryData[currentCategory];
-            const item = list[currentIndex];
-            const imgEl = document.getElementById('modalImg');
-            const captionEl = document.getElementById('modalCaption');
-            const counterEl = document.getElementById('modalCounter');
-            const linkContainer = document.getElementById('modalLinkContainer');
-            const currentLang = localStorage.getItem("selectedLanguage") || "tr";
-            const btnText = translations[currentLang].liveProjBtn;
-
-            imgEl.src = item.src;
-            captionEl.innerText = currentLang === 'tr' ? item.titleTr : item.titleEn;
-            counterEl.innerText = `${currentIndex + 1} / ${list.length}`;
-
-            if (item.link) {
-                linkContainer.innerHTML = `<a href="${item.link}" target="_blank" class="btn">${btnText} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
-            } else {
-                linkContainer.innerHTML = '';
-            }
-        }
-
-        document.addEventListener('keydown', function (e) {
-            const modal = document.getElementById('galleryModal');
-            if (modal.style.display === 'flex') {
-                if (e.key === 'ArrowRight') changeSlide(1);
-                if (e.key === 'ArrowLeft') changeSlide(-1);
-                if (e.key === 'Escape') closeGallery();
-            }
-        });
-
-        document.getElementById('galleryModal').addEventListener('click', function (e) {
-            if (e.target === this) {
-                closeGallery();
-            }
-        });
+    </script>
     </script>
 </body>
 
